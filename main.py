@@ -18,7 +18,9 @@ clock = pygame.time.Clock()
 
 def draw_grid(positions):
     for row in range(GRID_HEIGHT):
-        pygame.draw.line(screen, BLACK, (0,row * TILE_SIZE), (WIDTH, row * TILE_SIZE))
+        pygame.draw.line(screen, BLACK, (0, row * TILE_SIZE), (WIDTH, row * TILE_SIZE))
+    for column in range(GRID_WIDTH):
+        pygame.draw.line(screen, BLACK, (column * TILE_SIZE, 0), (column * TILE_SIZE, HEIGHT))
 
 def main():
     running = True
