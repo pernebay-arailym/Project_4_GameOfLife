@@ -14,4 +14,4 @@ FPS = 60
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-clocl = pygame.time.Clock()
+clock = pygame.time.Clock()
