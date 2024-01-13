@@ -31,13 +31,23 @@ def main():
     running = True
 
     positions = set()
-    positions.add((10, 10))
     while running:
         clock.tick(FPS)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                column = x // TILE_SIZE
+                row = y // TILE_SIZE
+                pos = (column, row)
+ 
+                if pos in positions:
+                    positions.remove(pos)
+                else:
+                    positions.add(pos)
 
         screen.fill(YELLOW)
         draw_grid(positions)
