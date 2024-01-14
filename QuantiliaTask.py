@@ -27,10 +27,29 @@ def evolve_with_boundary(state, step):
 
     return current_grid
 
-def evolve_without_boundary(state, steps):
+def evolve_without_boundary(state, time):
     rows = len(state)
     cols = len(state[0])
-    pass
+    
+
+    def count_life_around_without_boundary(grid, n, m):
+        live_neighbors = 0
+        for i in range(n-1, n+2):
+            for j in range(m-1, m+2):
+                live_neighbors += grid[i % rows][j % cols]
+        return live_neighbors
+    
+    current_grid = state.copy()
+    for _ in range(time):
+        new_grid = [[0] * cols for _ in range(rows)]
+        for i in range(rows):
+            for j in range(cols):
+                live_neighbors = count_life_around_without_boundary(current_grid, i, j)
+                new_grid[i][j] = is_alive(current_grid[i][j], live_neighbors)
+        current_grid = new_grid
+
+    return current_grid
+
 
 #usage:
 given_state = [
@@ -48,6 +67,6 @@ print("Evolution with fixed boundary:")
 for row in result_with_boundary:
     print(row)
 
-# print("\nEvolution without boundary:")
-# for row in result_without_boundary:
-#    print(row)
+print("\nEvolution without boundary:")
+for row in result_without_boundary:
+   print(row)
