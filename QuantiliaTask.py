@@ -1,4 +1,4 @@
-def count_life_around(grid, n, m, t):
+def count_life_around(grid, n, m):
     live_neighbors = 0
     for i in range(n-1, n+2):
         for j in range(m-1, m+2):
@@ -14,14 +14,14 @@ def is_alive(current_state, live_neighbors):
 
 def evolve_with_boundary(state, step):
     rows = len(state)
-    cols = len(state [0])
+    cols = len(state[0])
 
     current_grid = state.copy()
     for _ in range(step):
         new_grid = [[0] * cols for _ in range(rows)]
         for i in range(rows):
             for j in range(cols):
-                live_neighbors = count_life_around(current_grid, i, j, step)
+                live_neighbors = count_life_around(current_grid, i, j)
                 new_grid[i][j] = is_alive(current_grid[i][j], live_neighbors)
         current_grid = new_grid
 
